@@ -1,25 +1,43 @@
 const express = require("express");
 const app = express();
-app.use(express.json());
 const cors = require("cors");
-app.use(cors());
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
+
+const authRoutes = require("./authRoutes"); // Import the auth routes
 const PORT = process.env.PORT || 8080;
 
-app.get("/", (request, response) => {
+// Middleware
+app.use(express.json());
+app.use(cors());
+
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log("Connected to MongoDB Atlas"))
+    .catch((error) => console.error("Error connecting to MongoDB Atlas:", error));
+
+// Handle invalid JSON payloads
+app.use((err, req, res, next) => {
+    if (err instanceof SyntaxError && err.status === 400 && "body" in err) {
+        return res.status(400).send({ message: "Invalid JSON payload" });
+    }
+    next();
+});
+
+// Use the auth routes
+app.use("/api/auth", authRoutes);
+
+// Default route
+app.get("/", (req, res) => {
     try {
-        response.status(200).send({ msg: "This is my backend" });
+        res.status(200).send({ msg: "This is my backend" });
     } catch (error) {
-        response.status(500).send({ message: "error occurred" });
+        res.status(500).send({ message: "Error occurred" });
     }
 });
 
-app.listen(PORT, async () => {
-    try {
-        console.log(`Server running on port ${PORT}`);
-    } catch (error) {
-        console.log("Server not connected", error);
-    }
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
