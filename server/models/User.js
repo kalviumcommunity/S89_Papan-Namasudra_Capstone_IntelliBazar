@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// User Schema
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
@@ -11,11 +10,9 @@ const userSchema = new mongoose.Schema({
     updatedAt: { type: Date, default: Date.now },
 });
 
-// Middleware to update `updatedAt` before saving
 userSchema.pre("save", function (next) {
     this.updatedAt = Date.now();
     next();
 });
 
-// Export the User model
 module.exports = mongoose.model("User", userSchema);
