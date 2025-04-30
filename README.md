@@ -161,3 +161,6 @@ This MERN-based AI Shopping Website project showcases how modern AI techniques c
 | Day 30| ✅ Final deployment & demo-ready build. <br> ✅ Record demo video or screenshots. |
 
 ---
+
+
+Backend_deployed_link = https://s89-papan-namasudra-capstone-intellibazar.onrender.com
