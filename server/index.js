@@ -26,7 +26,7 @@ app.use((err, req, res, next) => {
 });
 
 // Use the auth routes
-app.use(""/api/auth, authRoutes);
+app.use("/api/auth", authRoutes);
 
 // Default route
 app.get("/", (req, res) => {
