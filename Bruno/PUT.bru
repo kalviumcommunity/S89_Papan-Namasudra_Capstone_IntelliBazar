@@ -1,0 +1,19 @@
+meta {
+  name: PUT
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8080/api/auth/update-password
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "username":"Mrpapan",
+    "oldPassword":"Mrpapan",
+    "newPassword":"papan"
+  }
+}
