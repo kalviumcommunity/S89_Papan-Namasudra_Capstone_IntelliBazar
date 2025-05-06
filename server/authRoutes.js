@@ -5,8 +5,8 @@ const User = require("./models/User");
 const Product = require("./models/Product");
 const Order = require("./models/Order");
 
-
 const router = express.Router();
+
 
 // Sign In
 router.post("/signin", async (req, res) => {
@@ -22,6 +22,7 @@ router.post("/signin", async (req, res) => {
         res.status(400).send({ message: error.code === 11000 ? "Username or email already exists" : "Error registering user" });
     }
 });
+
 
 // Login
 router.post("/login", async (req, res) => {
@@ -44,6 +45,7 @@ router.post("/login", async (req, res) => {
 });
 
 
+//update password
 router.put("/update-password", async (req, res) => {
     const { username, oldPassword, newPassword } = req.body;
     if (!username || !oldPassword || !newPassword) {
@@ -67,8 +69,6 @@ router.put("/update-password", async (req, res) => {
         res.status(500).send({ message: "Error updating password", error });
     }
 });
-
-
 
 
 module.exports = router;
