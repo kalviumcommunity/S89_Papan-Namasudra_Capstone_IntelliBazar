@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const authRoutes = require("./authRoutes"); // Import the auth routes
+const authRoutes = require("./routes/authRoutes");
+const productRoutes = require("./routes/productRoutes"); 
 const PORT = process.env.PORT || 8080;
 
 // Middleware
@@ -27,6 +28,7 @@ app.use((err, req, res, next) => {
 
 // Use the auth routes
 app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
 
 // Default route
 app.get("/", (req, res) => {
