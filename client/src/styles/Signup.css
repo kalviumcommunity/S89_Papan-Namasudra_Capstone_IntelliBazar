@@ -1,0 +1,65 @@
+/* Modern Signup Page Styles - Using Tailwind CSS for main styling */
+
+/* Custom animations and effects */
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  animation: slideInFromLeft 0.6s ease-out;
+}
+
+.slide-in-right {
+  animation: slideInFromRight 0.6s ease-out;
+}
+
+/* Password strength indicator animations */
+@keyframes strengthGrow {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--strength-width);
+  }
+}
+
+.strength-bar {
+  animation: strengthGrow 0.3s ease-out;
+}
+
+/* Custom backdrop blur for older browsers */
+.backdrop-blur-fallback {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Enhanced focus styles */
+.enhanced-focus:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* Smooth transitions for all interactive elements */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

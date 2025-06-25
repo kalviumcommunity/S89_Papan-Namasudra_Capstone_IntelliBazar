@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Signup-login",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

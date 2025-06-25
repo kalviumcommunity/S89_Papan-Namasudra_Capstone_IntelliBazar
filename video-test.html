@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #000;
+            color: white;
+        }
+        .video-container {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        video {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            background: #222;
+        }
+        .error {
+            color: #ff6b6b;
+            margin-top: 10px;
+        }
+        .success {
+            color: #51cf66;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video URL Test</h1>
+    <p>Testing the video URLs used in the Shorts component:</p>
+
+    <div class="video-container">
+        <h3>Video 1: BigBuckBunny</h3>
+        <video controls preload="metadata" id="video1">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="status1"></div>
+    </div>
+
+    <div class="video-container">
+        <h3>Video 2: ElephantsDream</h3>
+        <video controls preload="metadata" id="video2">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="status2"></div>
+    </div>
+
+    <div class="video-container">
+        <h3>Video 3: ForBiggerBlazes</h3>
+        <video controls preload="metadata" id="video3">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="status3"></div>
+    </div>
+
+    <div class="video-container">
+        <h3>Video 4: ForBiggerEscapes</h3>
+        <video controls preload="metadata" id="video4">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="status4"></div>
+    </div>
+
+    <div class="video-container">
+        <h3>Video 5: ForBiggerFun</h3>
+        <video controls preload="metadata" id="video5">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </source>
+        <div id="status5"></div>
+    </div>
+
+    <div class="video-container">
+        <h3>Video 6: ForBiggerJoyrides</h3>
+        <video controls preload="metadata" id="video6">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="status6"></div>
+    </div>
+
+    <script>
+        // Test each video
+        for (let i = 1; i <= 6; i++) {
+            const video = document.getElementById(`video${i}`);
+            const status = document.getElementById(`status${i}`);
+            
+            video.addEventListener('loadedmetadata', () => {
+                status.innerHTML = '<div class="success">✅ Video loaded successfully</div>';
+                console.log(`Video ${i} loaded:`, video.duration, 'seconds');
+            });
+            
+            video.addEventListener('error', (e) => {
+                status.innerHTML = '<div class="error">❌ Failed to load video</div>';
+                console.error(`Video ${i} error:`, e.target.error);
+            });
+            
+            video.addEventListener('canplay', () => {
+                console.log(`Video ${i} can play`);
+            });
+        }
+    </script>
+</body>
+</html>
