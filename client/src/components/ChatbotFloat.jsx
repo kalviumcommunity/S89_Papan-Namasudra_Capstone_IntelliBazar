@@ -36,14 +36,15 @@ const ChatbotFloat = () => {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    const currentMessage = inputMessage; // Store the message before clearing
     setInputMessage('');
     setIsTyping(true);
 
-    // Simulate bot response (replace with actual API call later)
+    // Simulate bot response for floating widget (main chat uses external URL)
     setTimeout(() => {
       const botResponse = {
         id: Date.now() + 1,
-        text: getBotResponse(inputMessage),
+        text: getBotResponse(currentMessage), // Use stored message
         sender: 'bot',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
