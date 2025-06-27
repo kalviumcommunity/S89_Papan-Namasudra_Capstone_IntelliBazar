@@ -8,10 +8,25 @@
 <body>
     <h1>Testing Module Loading</h1>
     <div id="test-output"></div>
-    
+    <div id="import-test"></div>
+
     <script type="module">
         console.log('Module script loaded successfully!');
         document.getElementById('test-output').innerHTML = 'Module loading works!';
+
+        // Test importing a module
+        try {
+            import('./test.js').then(module => {
+                console.log('Import successful:', module.testMessage);
+                document.getElementById('import-test').innerHTML = 'Import test: ' + module.testMessage;
+            }).catch(err => {
+                console.error('Import failed:', err);
+                document.getElementById('import-test').innerHTML = 'Import failed: ' + err.message;
+            });
+        } catch (err) {
+            console.error('Module import error:', err);
+            document.getElementById('import-test').innerHTML = 'Module error: ' + err.message;
+        }
     </script>
 </body>
 </html>
