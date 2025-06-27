@@ -2,10 +2,23 @@
   command = "npm run build"
   publish = "dist"
 
+[build.environment]
+  NODE_VERSION = "18"
+
 [[headers]]
-  for = "/assets/*.js"
+  for = "*.js"
   [headers.values]
-    Content-Type = "text/javascript; charset=utf-8"
+    Content-Type = "text/javascript"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Content-Type = "text/javascript"
+
+[[headers]]
+  for = "/**/*.js"
+  [headers.values]
+    Content-Type = "text/javascript"
 
 [[redirects]]
   from = "/*"
