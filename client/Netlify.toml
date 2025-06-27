@@ -1,37 +1,17 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  functions = "netlify/functions"
 
-[build.environment]
-  NODE_VERSION = "18"
+[[headers]]
+  for = "/app.js"
+  [headers.values]
+    Content-Type = "text/javascript"
 
-# Force JavaScript MIME type with multiple approaches
 [[headers]]
   for = "*.js"
   [headers.values]
-    Content-Type = "text/javascript; charset=utf-8"
-    X-Content-Type-Options = "nosniff"
+    Content-Type = "text/javascript"
 
-[[headers]]
-  for = "/assets/*.js"
-  [headers.values]
-    Content-Type = "text/javascript; charset=utf-8"
-    X-Content-Type-Options = "nosniff"
-
-[[headers]]
-  for = "/**/*.js"
-  [headers.values]
-    Content-Type = "text/javascript; charset=utf-8"
-    X-Content-Type-Options = "nosniff"
-
-# Redirect JS files to function if headers fail
-[[redirects]]
-  from = "/assets/index.js"
-  to = "/.netlify/functions/serve-js"
-  status = 200
-
-# SPA fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"
