@@ -51,9 +51,13 @@ export default defineConfig({
         manualChunks: undefined,
         assetFileNames: 'assets/[name].[hash].[ext]',
         chunkFileNames: 'assets/[name].[hash].js',
-        entryFileNames: 'assets/[name].[hash].js'
-      }
-    }
+        entryFileNames: 'assets/[name].[hash].js',
+        format: 'es'
+      },
+      external: []
+    },
+    target: 'es2015',
+    minify: 'esbuild'
   },
   esbuild: {
     loader: 'jsx',
