@@ -57,6 +57,19 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve static files with proper MIME types
+app.use(express.static(path.join(__dirname, '../client/dist'), {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.js')) {
+      res.setHeader('Content-Type', 'text/javascript');
+    } else if (path.endsWith('.mjs')) {
+      res.setHeader('Content-Type', 'text/javascript');
+    } else if (path.endsWith('.jsx')) {
+      res.setHeader('Content-Type', 'text/javascript');
+    }
+  }
+}));
+
 // Routes
 console.log('🔧 Loading auth routes...');
 app.use("/api/auth", require("./routes/authRoutes"));
