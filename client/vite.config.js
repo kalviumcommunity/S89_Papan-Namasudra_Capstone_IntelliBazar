@@ -10,7 +10,7 @@ const mimeTypePlugin = () => {
       server.middlewares.use((req, res, next) => {
         const url = req.url || ''
         if (url.includes('/src/') || url.endsWith('.js') || url.endsWith('.jsx') || url.endsWith('.mjs') || url.endsWith('.ts') || url.endsWith('.tsx')) {
-          res.setHeader('Content-Type', 'application/javascript; charset=utf-8')
+          res.setHeader('Content-Type', 'text/javascript; charset=utf-8')
           res.setHeader('X-Content-Type-Options', 'nosniff')
         }
         next()
@@ -21,7 +21,16 @@ const mimeTypePlugin = () => {
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), mimeTypePlugin()],
+  plugins: [
+    react({
+      jsxRuntime: 'automatic',
+      babel: {
+        plugins: []
+      }
+    }),
+    tailwindcss(),
+    mimeTypePlugin()
+  ],
   server: {
     port: 5173,
     host: true,
@@ -45,6 +54,11 @@ export default defineConfig({
         entryFileNames: 'assets/[name].[hash].js'
       }
     }
+  },
+  esbuild: {
+    loader: 'jsx',
+    include: /src\/.*\.[jt]sx?$/,
+    exclude: []
   },
   define: {
     global: 'globalThis'
