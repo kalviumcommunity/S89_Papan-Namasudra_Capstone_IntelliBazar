@@ -16,21 +16,15 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    target: 'es2015',
     rollupOptions: {
       output: {
-        format: 'umd',
+        format: 'iife',
         name: 'IntelliBazar',
-        entryFileNames: 'assets/[name].js',
-        chunkFileNames: 'assets/[name].js',
-        assetFileNames: 'assets/[name].[ext]',
+        entryFileNames: 'app.js',
+        chunkFileNames: 'chunk-[name].js',
+        assetFileNames: '[name].[ext]',
         manualChunks: undefined
-      },
-      external: [],
-      plugins: []
+      }
     }
-  },
-  define: {
-    global: 'globalThis'
   }
 })
