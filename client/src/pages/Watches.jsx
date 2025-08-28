@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaHeart, FaCheckCircle, FaSearch, FaClock } from "react-icons/fa";
+import { FaHeart, FaCheckCircle, FaSearch, FaClock, FaStar, FaRegStar } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
 import { useCartSidebar } from "../context/CartSidebarContext";

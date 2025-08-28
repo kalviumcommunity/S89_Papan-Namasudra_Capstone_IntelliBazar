@@ -8,8 +8,8 @@
     
     <div>
         <h3>Test Admin Login</h3>
-        <input type="text" id="username" placeholder="Admin Username" value="superadmin">
-        <input type="password" id="password" placeholder="Admin Password" value="SuperAdmin123!">
+        <input type="email" id="username" placeholder="Admin Email" value="admin@intellibazar.com">
+        <input type="password" id="password" placeholder="Admin Password" value="admin123">
         <button onclick="testLogin()">Test Login</button>
     </div>
     
@@ -25,14 +25,14 @@
                 console.log('Testing admin login...');
                 console.log('URL:', 'http://localhost:8080/api/admin-auth/login');
                 
-                const response = await fetch('http://localhost:8080/api/admin-auth/login', {
+                const response = await fetch('http://localhost:8080/api/seller/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        adminUsername: username,
-                        adminPassword: password
+                        email: username,
+                        password: password
                     })
                 });
                 
@@ -48,9 +48,9 @@
                 
                 resultDiv.innerHTML = `
                     <h4>✅ Success!</h4>
-                    <p><strong>Admin:</strong> ${data.adminUser.fullName}</p>
-                    <p><strong>Level:</strong> ${data.adminUser.adminLevel}</p>
-                    <p><strong>Token:</strong> ${data.adminToken.substring(0, 50)}...</p>
+                    <p><strong>Admin:</strong> ${data.adminUser.name}</p>
+                    <p><strong>Business:</strong> ${data.adminUser.businessName}</p>
+                    <p><strong>Token:</strong> ${data.token.substring(0, 50)}...</p>
                 `;
                 
             } catch (error) {
